@@ -71,9 +71,8 @@ if __name__ == "__main__":
     app.setStyle("Fusion")
 
     darker_palette = QPalette()
-    darker_palette.setColor(QPalette.Window, QColor(44, 62, 80))
-    darker_palette.setColor(QPalette.WindowText, Qt.white)
-    darker_palette.setColor(QPalette.Base, QColor(210, 210, 210))
+    darker_palette.setColor(QPalette.Window, QColor(52, 52, 52))
+    darker_palette.setColor(QPalette.WindowText, QColor(212, 175, 55))
     darker_palette.setColor(QPalette.AlternateBase, QColor(190, 190, 190))
     darker_palette.setColor(QPalette.ToolTipBase, Qt.white)
     darker_palette.setColor(QPalette.ToolTipText, Qt.black)
@@ -85,7 +84,6 @@ if __name__ == "__main__":
     darker_palette.setColor(QPalette.Highlight, QColor(32, 100, 188))
     darker_palette.setColor(QPalette.HighlightedText, Qt.white)
     app.setPalette(darker_palette)
-
     app.setStyleSheet("""
     
         QToolTip { color: #ffffff; background-color: #2a82da; border: 1px solid white; }

@@ -1,7 +1,6 @@
-from PyQt5.QtWidgets import QVBoxLayout, QHBoxLayout, QLabel, QLineEdit, QPushButton, QWidget
+from PyQt5.QtWidgets import QVBoxLayout, QHBoxLayout, QLabel, QLineEdit, QPushButton, QWidget, QApplication
 from PyQt5.QtGui import QPixmap, QFont
 from PyQt5.QtCore import Qt
-
 
 
 class Login_View(QWidget):
@@ -9,76 +8,148 @@ class Login_View(QWidget):
         super().__init__()
 
     def initUI(self):
+        # Set layout direction to right-to-left
+        self.setLayoutDirection(Qt.RightToLeft)
 
         main_layout = QVBoxLayout(self)
-        image_layout = QHBoxLayout()  # Horizontales Layout für das Bild
-        image_path = 'Bilder/libyaGovHigh.png'  # Pfad zum Bild
-        pixmap = QPixmap(image_path).scaled(150, 150, Qt.KeepAspectRatio)  # Bild skalieren
-        image_label = QLabel()  # Label für das Bild
-        image_label.setPixmap(pixmap)  # Bild zum Label hinzufügen
-        image_layout.addStretch()  # Strecke vor dem Bild, um es zu zentrieren
-        image_layout.addWidget(image_label)  # Bild-Label zum Layout hinzufügen
-        image_layout.addStretch()  # Strecke nach dem Bild, um es zu zentrieren
-        main_layout.insertLayout(0, image_layout)  # Füge das Bildlayout am Anfang des Hauptlayouts hinzu
 
-        font = QFont("Arial", 20)
-
-        # Text Label, zentriert
-        text_label_layout = QHBoxLayout()  # Horizontales Layout für das Text-Label
-        text_label = QLabel('منظومة إصدار التأشيرات بالسفارة الليبية ببرلين')  # Text-Label erstellen
+        # First header line (State of Libya)
+        text_label_layout = QHBoxLayout()
+        text_label = QLabel('دولة ليبيا')
+        header_font = QFont("Arial", 26)
+        text_label.setFont(header_font)
         text_label.setAlignment(Qt.AlignCenter)
-        text_label.setFont(font)
+        text_label_layout.addStretch()
+        text_label_layout.addWidget(text_label)
+        text_label_layout.addStretch()
+        main_layout.addLayout(text_label_layout)
 
-        font = QFont("Arial", 16)
+        # Second header line (Ministry of Foreign Affairs)
+        text_label_layout = QHBoxLayout()
+        text_label = QLabel('وزارة الخارجية و التعاون الدولي')
+        text_label.setFont(header_font)
+        text_label.setAlignment(Qt.AlignCenter)
+        text_label_layout.addStretch()
+        text_label_layout.addWidget(text_label)
+        text_label_layout.addStretch()
+        main_layout.addLayout(text_label_layout)
 
-        text_label_layout.addStretch()  # Strecke vor dem Text, um ihn zu zentrieren
-        text_label_layout.addWidget(text_label)  # Text-Label zum Layout hinzufügen
-        text_label_layout.addStretch()  # Strecke nach dem Text, um ihn zu zentrieren
+        # Image logo at the top
+        image_layout = QHBoxLayout()
+        image_path = 'Bilder/libyaGovHigh.png'
+        pixmap = QPixmap(image_path).scaled(150, 150, Qt.KeepAspectRatio)
+        image_label = QLabel()
+        image_label.setPixmap(pixmap)
+        image_layout.addStretch()
+        image_layout.addWidget(image_label)
+        image_layout.addStretch()
+        main_layout.addLayout(image_layout)
 
-        main_layout.addLayout(text_label_layout)  # Füge das Text-Label-Layout zum Hauptlayout hinzu
+        # Add space between sections
+        main_layout.addStretch()
 
-        # Login-Panel für Label, Eingabefeld und Button, zentriert
+        # System title
+        text_label_layout = QHBoxLayout()
+        text_label = QLabel('منظومة إصدار التأشيرات بالقنصلية العامة دوسلدورف')
+        text_label.setFont(header_font)
+        text_label.setAlignment(Qt.AlignCenter)
+        text_label_layout.addStretch()
+        text_label_layout.addWidget(text_label)
+        text_label_layout.addStretch()
+        main_layout.addLayout(text_label_layout)
+
+        # Login panel
         login_panel_layout = QVBoxLayout()
-        label_layout = QHBoxLayout()
+
+        # Password row (label and input field side by side)
+        password_row_layout = QHBoxLayout()
+        password_row_layout.addStretch()
+
         self.label = QLabel('أدخل كلمة المرور:')
-        self.label.setFont(font)
-        label_layout.addStretch()
-        label_layout.addWidget(self.label)
-        label_layout.addStretch()
+        label_font = QFont("Arial", 16)
+        self.label.setFont(label_font)
+        password_row_layout.addWidget(self.label)
 
-
-        font = QFont("Arial", 14)
-
-        password_input_layout = QHBoxLayout()
         self.password_input = QLineEdit()
         self.password_input.setEchoMode(QLineEdit.Password)
         self.password_input.setFixedSize(200, 40)
-        self.password_input.setFont(font)
-        password_input_layout.addStretch()
-        password_input_layout.addWidget(self.password_input)
-        password_input_layout.addStretch()
+        input_font = QFont("Arial", 12)
+        self.password_input.setFont(input_font)
+        password_row_layout.addWidget(self.password_input)
 
-        button_layout = QHBoxLayout()
+        password_row_layout.addStretch()
+        login_panel_layout.addLayout(password_row_layout)
+
+        # Spacing between input row and buttons
+        login_panel_layout.addSpacing(10)
+
+        # Button layout under password field
+        buttons_under_label_layout = QHBoxLayout()
+        buttons_under_label_layout.addStretch()
+
+        buttons_column = QVBoxLayout()
+        buttons_column.setAlignment(Qt.AlignRight)
+
+        # Calculate button width based on label and input field
+        btn_width = self.label.sizeHint().width() + self.password_input.width()
+        btn_height = 40
+        button_font = QFont("Arial", 12)
+
+        # Login button
         self.login_button = QPushButton('تسجيل الدخول')
-        self.login_button.setFixedSize(200, 40)
-        button_layout.addStretch()
-        button_layout.addWidget(self.login_button)
-        button_layout.addStretch()
 
-        login_panel_layout.addLayout(label_layout)
-        login_panel_layout.addLayout(password_input_layout)
-        login_panel_layout.addLayout(button_layout)
+        # Set size with fixed style that can't be overridden
+        self.login_button.setStyleSheet(f"""
+            QPushButton {{
+                min-width: {btn_width}px;
+                max-width: {btn_width}px;
+                min-height: {btn_height}px;
+                max-height: {btn_height}px;
+            }}
+        """)
+        self.login_button.setFont(button_font)
 
-        # Footer, zentriert
+        # Exit button
+        self.exit_button = QPushButton('خروج')
+
+        # Set size with fixed style that can't be overridden
+        self.exit_button.setStyleSheet(f"""
+            QPushButton {{
+                min-width: {btn_width}px;
+                max-width: {btn_width}px;
+                min-height: {btn_height}px;
+                max-height: {btn_height}px;
+            }}
+        """)
+        self.exit_button.setFont(button_font)
+
+        buttons_column.addWidget(self.login_button)
+        buttons_column.addSpacing(200)
+        buttons_column.addWidget(self.exit_button)
+
+        buttons_under_label_layout.addLayout(buttons_column)
+        buttons_under_label_layout.addStretch()
+
+        login_panel_layout.addLayout(buttons_under_label_layout)
+
+        # Connect exit button to quit application
+        self.exit_button.clicked.connect(QApplication.quit)
+
+        # Center the login panel
+        main_layout.addStretch()
+        main_layout.addLayout(login_panel_layout)
+        main_layout.addStretch()
+
+        # Footer
         footer_layout = QHBoxLayout()
-        footer_text = QLabel('2024 Developed by ')
+        footer_text = QLabel('2025 Developed by ')
         footer_text.setStyleSheet("font-size: 16px;")
         logo_path = 'Bilder/logo1x1-_improved.png'
         logo_pixmap = QPixmap(logo_path).scaled(80, 80, Qt.KeepAspectRatio)
         logo_label = QLabel()
         logo_label.setPixmap(logo_pixmap)
         link_label = QLabel(
-            '<a href="https://www.itpandmore.com" style="color: white; text-decoration: none;">www.itpandmore.com</a>')
+            '<a href="https://www.itpandmore.com" style="color:#D4AF37; text-decoration: none;">www.itpandmore.com</a>')
         link_label.setStyleSheet("color: white; font-size: 16px;")
         link_label.setOpenExternalLinks(True)
         footer_layout.addStretch()
@@ -86,11 +157,33 @@ class Login_View(QWidget):
         footer_layout.addWidget(logo_label)
         footer_layout.addWidget(link_label)
         footer_layout.addStretch()
-
-        # Hauptlayout-Zusammenstellung
-        main_layout.addStretch()
-        main_layout.addLayout(login_panel_layout)
-        main_layout.addStretch()
         main_layout.addLayout(footer_layout)
 
         self.setLayout(main_layout)
+
+    # Zusätzliche Methode, um sicherzustellen, dass Buttons-Größen nicht überschrieben werden
+    def showEvent(self, event):
+        """Wird aufgerufen, wenn das Widget angezeigt wird"""
+        super().showEvent(event)
+        # Recalculate button width and enforce it
+        btn_width = self.label.sizeHint().width() + self.password_input.width() - 5
+        btn_height = 30
+
+        # Aktualisiert die Stylesheet-Eigenschaften beim Anzeigen
+        self.login_button.setStyleSheet(f"""
+            QPushButton {{
+                min-width: {btn_width}px;
+                max-width: {btn_width}px;
+                min-height: {btn_height}px;
+                max-height: {btn_height}px;
+            }}
+        """)
+
+        self.exit_button.setStyleSheet(f"""
+            QPushButton {{
+                min-width: {btn_width}px;
+                max-width: {btn_width}px;
+                min-height: {btn_height}px;
+                max-height: {btn_height}px;
+            }}
+        """)

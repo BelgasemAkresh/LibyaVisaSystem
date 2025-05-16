@@ -37,8 +37,11 @@ class PDF_Printer:
         return bool(arabic_pattern.search(text))
 
     def print_text(self, text, x_mm, y_mm, font_size=9):
-        x = self._mm_to_points(x_mm + 4)
-        y = self._mm_to_points(y_mm) + self.extraY
+
+        # hier eine wichtige stelle
+
+        x = self._mm_to_points(x_mm + 4) -1
+        y = self._mm_to_points(y_mm) + self.extraY -8.5
 
         if self._is_arabic(text):
             reshaped_text = arabic_reshaper.reshape(text)
@@ -58,8 +61,11 @@ class PDF_Printer:
         width, height = image.size
         scaled_width = self._mm_to_points(x_scale)
         scaled_height = self._mm_to_points(y_scale)
-        x = self._mm_to_points(x_mm + 6) + 50
-        y = self._mm_to_points(-y_mm - self.extraY_image - 20 + 5) + 854
+
+        #hier eine wichtige stelle
+
+        x = self._mm_to_points(x_mm + 11) + 30
+        y = self._mm_to_points(-y_mm - self.extraY_image - 14) + 843
 
         self.canvas.drawImage(image_reader, x - scaled_width, y - scaled_height, scaled_width, scaled_height,
                               mask='auto')

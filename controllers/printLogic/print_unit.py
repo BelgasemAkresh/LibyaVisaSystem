@@ -12,7 +12,7 @@ class Print_Unit:
         if self.kontakt is not None:
             self.printer.print_pic(self.kontakt.image_data, 62, 24)
 
-            self.printer.print_text("السفارة الليبية في برلين", 115, 48)
+            self.printer.print_text("القنصلية العمة دوسلدرف", 115, 48)
 
             l = [['visaNumber', (140, 65)], ['visaArt', (110, 65)], ['vorname', (150, 56)], ['nachname', (112, 56)],
                  ['passport', (140, 48)],

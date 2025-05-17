@@ -14,10 +14,10 @@ class Print_Unit:
 
             self.printer.print_text("القنصلية العمة دوسلدرف", 115, 48)
 
-            l = [['visaNumber', (140, 65)], ['visaArt', (110, 65)], ['vorname', (150, 56)], ['nachname', (112, 56)],
+            l = [['visaNumber', (140, 63)], ['visaArt', (110, 63)], ['vorname', (146, 56)], ['nachname', (115, 56)],
                  ['passport', (140, 48)],
-                 ['profession', (130, 48)], ['visaIss', (145, 40)], ['visaValid', (115, 40)], ['duration', (100, 40)],
-                 ['entriesNumber', (152, 33)], ['work', (126, 33)]
+                 ['profession', (130, 48)], ['visaIss', (140, 40)], ['visaValid', (115, 40)], ['duration', (100, 40)],
+                 ['entriesNumber', (152, 33)], ['work', (130, 33)]
                  ]
 
             for i in l:

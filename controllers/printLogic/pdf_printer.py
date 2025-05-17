@@ -41,7 +41,7 @@ class PDF_Printer:
         # hier eine wichtige stelle
 
         x = self._mm_to_points(x_mm + 4) -1
-        y = self._mm_to_points(y_mm) + self.extraY -8.5
+        y = self._mm_to_points(y_mm) + self.extraY -10
 
         if self._is_arabic(text):
             reshaped_text = arabic_reshaper.reshape(text)
@@ -64,7 +64,7 @@ class PDF_Printer:
 
         #hier eine wichtige stelle
 
-        x = self._mm_to_points(x_mm + 11) + 30
+        x = self._mm_to_points(x_mm + 10) + 30
         y = self._mm_to_points(-y_mm - self.extraY_image - 14) + 843
 
         self.canvas.drawImage(image_reader, x - scaled_width, y - scaled_height, scaled_width, scaled_height,

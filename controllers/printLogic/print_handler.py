@@ -2,7 +2,7 @@ from controllers.printLogic.pdf_printer import PDF_Printer
 from controllers.printLogic.print_unit import Print_Unit
 
 # um die distanz
-DISTANCE = 98
+DISTANCE = 97
 class Print_Hanlder:
     def __init__(self, up=None, mid=None, low=None):
         self.pdf_printer = PDF_Printer()
